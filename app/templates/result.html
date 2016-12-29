@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script type="text/javascript">
+  document.getElementById("jumbo").style.padding = "10px";
+
+  var e = document.getElementById("title");
+  /*
+  var d = document.createElement('h2');
+  */
+  var d = document.createElement('a');
+  d.innerHTML = d.innerHTML + ("Lyrical");
+  d.id = "result_text"
+  d.href = "{{ url_for('login') }} ";
+
+  e.parentNode.insertBefore(d, e);
+  e.parentNode.removeChild(e);
+
+  $( document ).ready(function() {
+    setTimeout(function(){
+      $(".spinner").fadeOut();
+    }, 1500);
+    setTimeout(function(){
+      $(".hidden").css("display", "block");
+      $(".song_container").fadeIn();
+    }, 2000);
+  });
+</script>
+
+<div class="spinner">
+  <div class="dot1"></div>
+  <div class="dot2"></div>
+</div>
+
+<div class="song_container">
+  <h1 class="song_name">{{ song_name }}</h1>
+  <h4 class="artist_name">By {{ username }}</h4>
+  <div>
+    {% for line in song %}
+    <div>{{ line }}<br /></div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
