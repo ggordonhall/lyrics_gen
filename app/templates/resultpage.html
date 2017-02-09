@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Lyrical Song Generator</title>
+    <link rel="shortcut icon" href="http://cliparts.co/cliparts/XrT/npj/XrTnpjpiR.svg" type="image/x-icon" />
+
+    <!-- Facebook Share Tags -->
+    <meta property="og:url"           content="http://127.0.0.1:5000/" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Lyrical" />
+    <meta property="og:description"   content="The Pop Lyric Generator" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/result.css') }}" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans" />
+
+    <!-- Generic Javascript and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        setTimeout(function(){
+          $("#tout").fadeOut();
+        }, 2800);
+        setTimeout(function(){
+          $(".hidden").css("display", "block");
+          $(".lyrics-container").fadeIn();
+          $(".share").fadeIn();
+          $(".credits").fadeIn();
+        }, 3300);
+      });
+    </script>
+
+  </head>
+  <body>
+
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <header class="header">
+      <div class="title-div">
+        <!-- <div id="title-image"> -->
+        <a id="title_text" href="{{ url_for('login') }}">Lyrical</a>
+            <!-- <img src="http://www.clker.com/cliparts/L/X/7/n/H/j/transparent-arrow-hi.png" alt="Title" /> -->
+        <!-- </div> -->
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="main">
+        <div class="col-left"></div>
+        <div class="result-container">
+
+          <div id="tout">
+            <div>
+              <div>
+                <div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lyrics-container">
+            <h1 class="song-name">{{ song_name }}</h1>
+            <h4 class="artist-name">By {{ username }}</h4>
+            <div>
+              {% for line in lyrics %}
+              <div>{{ line }}<br /></div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="share">
+          <div class="share-content">
+            <p id="share_text">
+              Share this page!
+            </p>
+            <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="icon_link" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="credits">
+        <p>
+          By <a href="mailto:ggordonhall@gmail.com">Gabriel Gordon-Hall</a>
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>

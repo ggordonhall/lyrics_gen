@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Lyrical Song Generator</title>
+    <link rel="shortcut icon" href="http://cliparts.co/cliparts/XrT/npj/XrTnpjpiR.svg" type="image/x-icon" />
+
+    <!-- Facebook Share Tags -->
+    <meta property="og:url"           content="http://127.0.0.1:5000/" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Lyrical" />
+    <meta property="og:description"   content="The Pop Lyric Generator" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans" />
+
+    <!-- Generic Javascript and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript">
+      $(function() {
+        $('form[id="signin"]').submit(function(e) {
+          var username = $('form[id="signin"] input[id="name_field"]').val();
+          if ( username == '') {
+            e.preventDefault();
+            $("#error").text('\u00A0\u00A0Please enter your name!');
+            $(".error").toggleClass("error-change");}
+          });
+      })
+    </script>
+
+  </head>
+  <body>
+    <header class="header">
+      <div class="title-div">
+        <h1 style="font-size:550%">Lyrical</h1>
+        <!-- <div id="title-image">
+          <img src="http://www.clker.com/cliparts/L/X/7/n/H/j/transparent-arrow-hi.png" alt="Title" />
+        </div> -->
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="main">
+        <div class="col-left"></div>
+        <div class="form">
+          <div class="form-container">
+            <form id="signin" class="signin" action="" method='post'>
+              {{ form.csrf_token }}
+              {{ form.hidden_tag() }}
+              <label for="#name_field" class="sr-only">Enter your name</label>
+              {{ form.artistName(id="name_field", placeholder=" Enter your name", autocomplete="off") }}
+              <div id="error" class="error"></div>
+              <div class="btn-box">
+                {{ form.submit(class_="btn btn-warning") }}
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="info">
+          <p>
+            Lyrical is a pop lyric generator based on the <a href="https://github.com/jsvine/markovify">markovify</a>
+            library. Enter your popstar name to see your next number one hit!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="credits">
+        <p>
+          By <a href="mailto:ggordonhall@gmail.com">Gabriel Gordon-Hall</a>
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>

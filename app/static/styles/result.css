@@ -1,0 +1,245 @@
+/* Base */
+
+body {
+    margin: 0px auto;
+    font-family: 'Fira Sans', sans-serif;
+    /*background-image: url("http://www.solidbackgrounds.com/images/2560x1440/2560x1440-white-solid-color-background.jpg");
+    background-repeat: repeat-y;*/
+  }
+
+/*
+img {
+    display: block;
+    margin: auto;
+    width: 10%;
+  }*/
+
+#title_text {
+    font-size: 400%;
+    cursor: pointer;
+    color: black;
+}
+
+.title-div {
+    text-align: center;
+    width: 30%;
+    border-bottom: 3px solid red;
+  }
+
+.header {
+    display: block;
+    margin-left: 35px;
+    padding: 0;
+    min-height: 10px;
+    /*border: 1px solid red;*/
+    background-color: transparent;
+    text-align: center;
+  }
+
+/*#title-image {
+    width: 80%;
+    margin: auto;
+}*/
+
+.footer {
+    display: -webkit-flex;
+    display: flex;
+
+    margin: 4px;
+    padding: 5px;
+    min-height: 10px;
+    /*border: 1px solid red;*/
+    background-color: transparent;
+  }
+
+.container {
+    width: 100%;
+    min-height: 520px;
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    flex-flow: row;
+  }
+
+.container > .main {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    flex-flow: row;
+
+    /*border: 1px solid red;*/
+
+    -webkit-flex: 6 1 60%;
+    flex: 6 1 60%;
+    -webkit-order: 1;
+    order: 1;
+  }
+
+.container > .main > .col-left {
+    -webkit-flex: 0 6 20%;
+    flex: 0 6 20%;
+    -webkit-order: 1;
+    order: 1;
+  }
+
+.container > .main > .result-container {
+    margin: 4px;
+    padding: 5px;
+    /*border: 1px solid red;*/
+
+    -webkit-flex: 6 1 70%;
+    flex: 6 1 70%;
+    -webkit-order: 2;
+    order: 2;
+  }
+
+.container > .sidebar {
+    display: -webkit-flex;
+    display: flex;
+
+    /*border: 1px solid red;*/
+
+    -webkit-flex: 1 6 10%;
+    flex: 1 6 10%;
+    -webkit-order: 2;
+    order: 2;
+  }
+
+.credits {
+    display: none;
+    position: fixed;
+    right: 35px;
+    bottom: 0px;
+    /*border: 1px solid red;*/
+    font-size: 17px;
+    font-style: italic;
+  }
+
+.share {
+    display: none;
+    position: fixed;
+    /*border: 1px solid red;*/
+    height: 100px;
+    width: 200px;
+    bottom: 55px;
+    right: 13px;
+  }
+
+.share-content {
+    text-align: left;
+}
+
+#share_text {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.fb-share-button {
+    padding: 2px;
+    border-bottom: 1px solid red;
+
+    transform: scale(1.8);
+    -ms-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    transform-origin: top left;
+    -ms-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -webkit-transform-origin: top left;
+}
+
+/* Too narrow to support all columns */
+@media all and (max-width: 640px) {
+    .container, #page {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+
+    .container > .main, .container > .sidebar {
+      -webkit-order: 0;
+      order: 0;
+    }
+
+    .container > header, footer {
+      min-height: 60px;
+      max-height: 60px;
+    }
+
+    .container > .main {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+
+    .main > .col-left, .main > .result-container {
+      -webkit-order: 0;
+      order: 0;
+    }
+}
+
+/* Lyrics */
+
+.lyrics-container {
+    display: none;
+    text-align: center;
+  }
+
+.song-name {
+    font-size: 300%;
+    /*padding-bottom: 2px;*/
+  }
+
+.artist-name {
+    font-style: italic;
+    padding-bottom: 10px;
+  }
+
+/* Load Screen */
+
+#tout:first-child div {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 3px solid #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+
+#tout:first-child>div>div {
+    width: 90px;
+    height: 90px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    margin: auto;
+    overflow: hidden;
+  }
+
+#tout:first-child div div div {
+    width: 110px;
+    height: 110px;
+    margin: auto;
+    top: 360px;
+    background-color: #333;
+    border-radius: 0%;
+    border: none;
+    animation-name: anim, color;
+    animation-duration: 5s;
+    animation-timing-function:ease;
+    animation-iteration-count:infinite;
+    animation-direction: alternate;
+  }
+
+@keyframes anim{
+
+    100% { top:0 }
+  }

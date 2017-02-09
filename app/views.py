@@ -1,4 +1,5 @@
 import random
+import re
 import ast
 import markovify
 from .sylco import sylco
@@ -33,6 +34,14 @@ def cap_name(name):
         username += capwords(i) + ' '
     return username.strip()
 
+# Insert username into the song where needed
+def insert_username(song, username):
+    song_edit = []
+    for line in song:
+        line = re.sub(r'XXXXX', username, line)
+        song_edit.append(line)
+    return song_edit
+
 # Remove trailing commas from the end of verses
 def clean_commas(song):
     res = []
@@ -63,9 +72,15 @@ chorus_dict = ast.literal_eval(chorus_rhymes)
 verse_dict = ast.literal_eval(verse_rhymes)
 
 # Set guide number of syllables per line
-VERSE_BENCH = random.randint(6,12)
+VERSE_BENCH = random.randint(6,10)
 CHORUS_BENCH = random.randint(3,8)
 BRIDGE_BENCH = random.randint(3,6)
+
+# Define then set rhyming patterns for verse and chorus
+verse_patterns = ['AABBCC', 'ABABCC', 'AABBC', 'ABABCDCD', 'AAAA']
+chorus_patterns = ['AA', 'ABAB', 'AABB', 'AAAA']
+VERSE_PATTERN = random.choice(verse_patterns)
+CHORUS_PATTERN = random.choice(chorus_patterns)
 
 # Generate line that rhymes with line stem
 def match_rhyme(stem, model, bench, d):
@@ -80,7 +95,7 @@ def match_rhyme(stem, model, bench, d):
 
 
     # If rhymes exist, test for rhymes by generating lines
-    for n in range(50):
+    for n in range(100):
         while True:
             rhyme_line = model.make_sentence()
 
@@ -95,53 +110,55 @@ def match_rhyme(stem, model, bench, d):
                 rhyme_stem = clean(rhyme_line.rsplit(None, 1)[-1])
 
                 # Check for rhyme
-                if rhyme_stem == stem or rhyme_stem in ls:
+                if rhyme_stem in ls:
                     return rhyme_line
+
+                # After a point, accept if rhyme_stem == stem
+                if n > 50:
+                    if rhyme_stem == stem:
+                        return rhyme_line
 
                 break
     return None
 
-# Construct 6-line verse
+# Construct verse for given rhyming pattern
 def make_verse():
     verse = []
-    stem1 = None
-    stem2 = None
-    stem3 = None
+    pattern = VERSE_PATTERN
+    stems = {}
 
-    # Markovify for each line
-    for _ in range(6):
+    for idx, i in enumerate(pattern):
         while True:
+            a = idx - 1
+            b = idx - 2
 
-            # Try to find rhyming match between lines 1 and 3
-            if _ == 2:
-                match = match_rhyme(stem1, verse_model, VERSE_BENCH, verse_dict)
+            # Try to find rhyming match based on the rhyming pattern
+            try:
+                if a >= 0 and i == pattern[a]:
+                    match = match_rhyme(stems[a], verse_model, VERSE_BENCH, verse_dict)
 
-                # If match, add to verse
-                if match:
-                    verse.append(match)
-                    break
+                    if match:
 
-            # Try to find rhyming match between lines 2 and 4
-            elif _ == 3:
-                match = match_rhyme(stem2, verse_model, VERSE_BENCH, verse_dict)
+                        # Cache line stem and add matching line to verse
+                        stems[idx] = clean(match.rsplit(None, 1)[-1])
+                        verse.append(match)
+                        break
 
-                # If match, add to verse.
-                if match:
-                    verse.append(match)
-                    break
+                elif b >= 0 and i == pattern[b]:
+                    match = match_rhyme(stems[b], verse_model, VERSE_BENCH, verse_dict)
 
-            # Try to find rhyming match between lines 5 and 6
-            elif _ == 5:
-                match = match_rhyme(stem3, verse_model, VERSE_BENCH, verse_dict)
+                    if match:
 
-                # If match, add to verse
-                if match:
-                    verse.append(match)
-                    break
+                        # Cache line stem and add matching line to verse
+                        stems[idx] = clean(match.rsplit(None, 1)[-1])
+                        verse.append(match)
+                        break
+
+            except IndexError:
+                pass
 
             # Otherwise add non-rhyming markovify line
             line = verse_model.make_sentence()
-
             if line:
 
                 # Keep syllables within verse range
@@ -149,48 +166,51 @@ def make_verse():
                 if syl_count > (VERSE_BENCH + 2) or syl_count < (VERSE_BENCH - 2):
                     continue
 
-                # Cache line for rhyming
-                if _ == 0:
-                    stem1 = clean(line.rsplit(None, 1)[-1])
-                elif _ == 1:
-                    stem2 = clean(line.rsplit(None, 1)[-1])
-                elif _ == 4:
-                    stem3 = clean(line.rsplit(None, 1)[-1])
-
+                # Cache line stem for future rhymes and add to verse
+                stems[idx] = clean(line.rsplit(None, 1)[-1])
                 verse.append(line)
                 break
 
     verse.append('')
     return verse
 
-# Construct chorus
+# Construct chorus for given rhyming pattern
 def make_chorus():
     chorus = ['[Chorus]']
-    stem1 = 0
-    stem2 = 0
+    pattern = CHORUS_PATTERN
+    stems = {}
 
-    # Four rhyming lines
-    for _ in range(4):
+    for idx, i in enumerate(pattern):
         while True:
+            a = idx - 1
+            b = idx - 2
 
-            # Try to find rhyming match between lines 1 and 2
-            if _ == 1:
-                match = match_rhyme(stem1, chorus_model, CHORUS_BENCH, chorus_dict)
+            # Try to find rhyming match based on the rhyming pattern
+            try:
+                if a >= 0 and i == pattern[a]:
+                    match = match_rhyme(stems[a], chorus_model, CHORUS_BENCH, chorus_dict)
 
-                # If match, add to chorus
-                if match:
-                    chorus.append(match)
-                    break
+                    if match:
 
-            # Try to find rhyming match between lines 3 and 4
-            elif _ == 3:
-                match = match_rhyme(stem2, chorus_model, CHORUS_BENCH, chorus_dict)
+                        # Cache line stem and add matching line to chorus
+                        stems[idx] = clean(match.rsplit(None, 1)[-1])
+                        chorus.append(match)
+                        break
 
-                # If match, add to chorus
-                if match:
-                    chorus.append(match)
-                    break
+                elif b >= 0 and i == pattern[b]:
+                    match = match_rhyme(stems[b], chorus_model, CHORUS_BENCH, chorus_dict)
 
+                    if match:
+
+                        # Cache line stem and add matching line to chorus
+                        stems[idx] = clean(match.rsplit(None, 1)[-1])
+                        chorus.append(match)
+                        break
+
+            except IndexError:
+                pass
+
+            # Otherwise add non-rhyming markovify line
             line = chorus_model.make_sentence()
             if line:
 
@@ -199,12 +219,8 @@ def make_chorus():
                 if syl_count > (CHORUS_BENCH + 2) or syl_count < (CHORUS_BENCH - 2):
                     continue
 
-                # Cache line for rhyming
-                if _ == 0:
-                    stem1 = clean(line.rsplit(None, 1)[-1])
-                elif _ == 2:
-                    stem2 = clean(line.rsplit(None, 1)[-1])
-
+                # Cache line stem for future rhymes and add to chorus
+                stems[idx] = clean(line.rsplit(None, 1)[-1])
                 chorus.append(line)
                 break
 
@@ -234,7 +250,7 @@ def make_prechorus():
 
                 # Keep syllables within bridge range
                 syl_count = sylco(line)
-                if syl_count > (VERSE_BENCH + 2) or syl_count < (VERSE_BENCH - 2):
+                if syl_count > (VERSE_BENCH + 1) or syl_count < (VERSE_BENCH - 1):
                     continue
 
                 # Cache line for rhyming
@@ -270,7 +286,7 @@ def make_bridge():
 
                 # Keep syllables within bridge range
                 syl_count = sylco(line)
-                if syl_count > (BRIDGE_BENCH + 2) or syl_count < (BRIDGE_BENCH - 2):
+                if syl_count > (BRIDGE_BENCH + 1) or syl_count < (BRIDGE_BENCH - 1):
                     continue
 
                 # Cache line for rhyming
@@ -291,21 +307,32 @@ def make_bridge():
     bridge.append('')
     return bridge
 
+# Construct fadeout
+def fadeout(chorus):
+    fadeout = ['[Fade]', chorus[-2]]
+    for i in range(2):
+        fadeout.append(chorus[-2].rsplit(None, (i+1))[0])
+    fadeout.append('')
+    return fadeout
+
 # Construct song
 def make_song():
     song = []
 
+    # Set chorus
     song_chorus = make_chorus()
 
-    # Set variables and generate chorus
+    # Set variables
     my_funcs = {
     'V' : make_verse,
     'B' : make_bridge,
-    'P' : make_prechorus}
+    'P' : make_prechorus,
+    'E' : make_chorus, # Alternate chorus
+    }
 
     # Define song structures
-    structs = ['VPCVBCC', 'VCVVC', 'VVPCC', 'VCVBCC', 'VPCCVBC', 'VCVCC', 'VPCBC', \
-            'VVPCVBCC', 'VCVC', 'VPCVVBC']
+    structs = ['VPCVBCC', 'VCVVCF', 'VVPCCF', 'VCVBCCF', 'VPCCVBCF', 'VCVCCF', 'VPCBCF', \
+            'VVPCVBCC', 'VCVCF', 'VPCVVBCF', 'VVVCBCEC', 'VCVCEC', 'EVVCBC', 'PCVECCF']
 
     # Randomly choose structure
     struct = random.choice(structs)
@@ -314,6 +341,8 @@ def make_song():
     for elem in struct:
         if elem == 'C':
             song.extend(song_chorus)
+        elif elem == 'F':
+            song.extend(fadeout(song_chorus))
         else:
             func_call = my_funcs[elem]
             song.extend(func_call())
@@ -326,7 +355,7 @@ def set_name(song):
 
     # Discard unwanted lines
     junk = ['', '[Chorus]', '[Bridge]']
-    lines = [line for line in song if line not in junk]
+    lines = [line for line in song if line not in junk and len(line.split(' '))!=1]
 
     # Choose random line, start and stop indicies
     line = random.choice(lines).split(' ')
@@ -354,12 +383,13 @@ def login():
     if form.validate_on_submit():
         name = request.form['artistName']
         return redirect(url_for('result', name=name))
-    return render_template('home.html', form=form)
+    return render_template('homepage.html', form=form)
 
 @app.route('/result')
 def result():
-    song = make_song()
-    song = clean_commas(song)
-    song_name = set_name(song)
     username = cap_name(request.args['name'])
-    return render_template('result.html', username=username, song=song, song_name=song_name)
+    lyrics = make_song()
+    lyrics = clean_commas(lyrics)
+    lyrics = insert_username(lyrics,username)
+    song_name = set_name(lyrics)
+    return render_template('resultpage.html', username=username, lyrics=lyrics, song_name=song_name)

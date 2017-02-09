@@ -8,7 +8,7 @@ filed.close()
 
 c = conn.cursor()
 
-c.execute("INSERT INTO source_rhymes VALUES (?, ?, ?)", (002, 'rhyme_verse', buffer(file_content)))
+c.execute("INSERT INTO source_rhymes VALUES (?, ?, ?)", (002, 'rhymes_verse', buffer(file_content)))
 
 conn.commit()
 conn.close()

@@ -1,4 +1,4 @@
-#!/Users/GabrielGordon-Hall/Desktop/website/flask/bin/python3
+#!/Users/GabrielGordon-Hall/Desktop/Webcode/Website/flask/bin/python3
 # EASY-INSTALL-ENTRY-SCRIPT: 'Unidecode==0.4.19','console_scripts','unidecode'
 __requires__ = 'Unidecode==0.4.19'
 import sys
