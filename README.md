@@ -1,3 +1,3 @@
-lyrics_gen
+Lyrical.im
 
-A flask website that uses the markovify library to create humorous pop lyrics.
+A pop lyric generator which uses the markovify library to create humorous pop lyrics. Website built using a lightweight Flask backend.
