@@ -1,10 +1,13 @@
+#!flask/bin/python
+
 import random
 import re
 import ast
 import markovify
-from .sylco import sylco
+from application.sylco import sylco
 from string import capwords
 
+from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect
@@ -12,8 +15,14 @@ from flask import url_for
 from flask import flash
 
 from application import application
-from .forms import UserName
-from .models import SourceText, SourceRhymes
+from application.forms import UserName
+from application.models import SourceText, SourceRhymes
+
+# ELASTIC BEANSTALK INITIALISATION
+# =====================================
+application = Flask(__name__)
+application.debug=True
+application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
 
 # STRING FORMATTING
 # =====================================
@@ -393,3 +402,6 @@ def result():
     lyrics = insert_username(lyrics,username)
     song_name = set_name(lyrics)
     return render_template('resultpage.html', username=username, lyrics=lyrics, song_name=song_name)
+
+if __name__ == '__main__':
+    application.run()
