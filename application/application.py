@@ -11,7 +11,7 @@ from flask import redirect
 from flask import url_for
 from flask import flash
 
-from app import app
+from application import application
 from .forms import UserName
 from .models import SourceText, SourceRhymes
 
