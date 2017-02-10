@@ -377,7 +377,7 @@ def set_name(song):
 # ROUTES
 # =====================================
 
-@app.route('/', methods=['POST', 'GET'])
+@application.route('/', methods=['POST', 'GET'])
 def login():
     form = UserName()
     if form.validate_on_submit():
@@ -385,7 +385,7 @@ def login():
         return redirect(url_for('result', name=name))
     return render_template('homepage.html', form=form)
 
-@app.route('/result')
+@application.route('/result')
 def result():
     username = cap_name(request.args['name'])
     lyrics = make_song()
