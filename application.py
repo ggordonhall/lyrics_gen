@@ -1,5 +1,6 @@
 #!flask/bin/python
 
+import sys
 import random
 import re
 import ast
@@ -353,6 +354,10 @@ def make_song():
         else:
             func_call = my_funcs[elem]
             song.extend(func_call())
+
+    for line in song:
+        line.encode('utf-8')
+
     return song
 
 # Set the song name using lyrics
@@ -379,7 +384,9 @@ def set_name(song):
         else:
             song_name += (capwords(word) + ' ')
 
-    return song_name.strip()
+    song_name.strip()
+
+    return song_name.encode('utf-8')
 
 # ROUTES
 # =====================================
