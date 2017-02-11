@@ -12,11 +12,9 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
-from flask import flash
 
 from application import application
 from application.forms import UserName
-from application.models import SourceText, SourceRhymes
 
 # ELASTIC BEANSTALK INITIALISATION
 # =====================================
@@ -67,10 +65,10 @@ def clean_commas(song):
 # =====================================
 
 # Fetch source text from the database
-chorus_text = str(SourceText.query.get(1))
-verse_text = str(SourceText.query.get(2))
-chorus_rhymes = str(SourceRhymes.query.get(1))
-verse_rhymes = str(SourceRhymes.query.get(2))
+chorus_text = str(open('files/lyrics_chorus.txt').read())
+verse_text = str(open('files/lyrics_verse.txt').read())
+chorus_rhymes = str(open('files/rhyme_dict_chorus.txt').read())
+verse_rhymes = str(open('files/rhyme_dict_verse.txt').read())
 
 # Model lyrics
 chorus_model = markovify.NewlineText(chorus_text, state_size=2)

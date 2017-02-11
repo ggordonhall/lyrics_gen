@@ -17,7 +17,6 @@ Flask==0.11.1
 Flask-Login==0.4.0
 Flask-Mail==0.9.1
 Flask-OpenID==1.2.5
-Flask-SQLAlchemy==2.1
 Flask-WhooshAlchemy==0.56
 Flask-WTF==0.13.1
 flipflop==1.0
@@ -35,9 +34,6 @@ PyYAML==3.12
 requests==2.9.1
 semantic-version==2.5.0
 six==1.10.0
-SQLAlchemy==1.1.4
-sqlalchemy-migrate==0.10.0
-sqlparse==0.2.2
 tabulate==0.7.5
 Tempita==0.5.2
 Unidecode==0.4.19
