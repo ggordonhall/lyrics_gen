@@ -1,6 +1,5 @@
 #!flask/bin/python
 
-import sys
 import random
 import re
 import ast
@@ -65,11 +64,11 @@ def clean_commas(song):
 # MAIN FUNCTION LOGIC
 # =====================================
 
-# Fetch source text from the database
-chorus_text = str(open('files/lyrics_chorus.txt').read())
-verse_text = str(open('files/lyrics_verse.txt').read())
-chorus_rhymes = str(open('files/rhyme_dict_chorus.txt').read())
-verse_rhymes = str(open('files/rhyme_dict_verse.txt').read())
+# Fetch source text from files
+chorus_text = str(open('files/lyrics_chorus.txt').read().strip())
+verse_text = str(open('files/lyrics_verse.txt').read().strip())
+chorus_rhymes = str(open('files/rhyme_dict_chorus.txt').read().strip())
+verse_rhymes = str(open('files/rhyme_dict_verse.txt').read().strip())
 
 # Model lyrics
 chorus_model = markovify.NewlineText(chorus_text, state_size=2)
@@ -355,9 +354,6 @@ def make_song():
             func_call = my_funcs[elem]
             song.extend(func_call())
 
-    for line in song:
-        line.encode('utf-8')
-
     return song
 
 # Set the song name using lyrics
@@ -386,7 +382,7 @@ def set_name(song):
 
     song_name.strip()
 
-    return song_name.encode('utf-8')
+    return song_name
 
 # ROUTES
 # =====================================
