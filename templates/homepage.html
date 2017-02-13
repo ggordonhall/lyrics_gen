@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Lyrical Song Generator</title>
-    <link rel="shortcut icon" href="http://cliparts.co/cliparts/XrT/npj/XrTnpjpiR.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ url_for('static',filename='favicon-quaver.png') }}" type="image/x-icon" />
 
     <!-- Facebook Share Tags -->
-    <meta property="og:url"           content="http://127.0.0.1:5000/" />
+    <meta property="og:url"           content="http://lyrical.im/" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Lyrical" />
     <meta property="og:description"   content="The Pop Lyric Generator" />
+    <meta property="og:image"         content="{{ url_for('static',filename='favicon-quaver.png') }}" />
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -36,54 +37,47 @@
           });
       })
     </script>
-
   </head>
-  <body>
-    <header class="header">
+
+  <body class="main">
+    <header>
       <div class="title-div">
         <h1 style="font-size:550%">Lyrical</h1>
-        <!-- <div id="title-image">
-          <img src="http://www.clker.com/cliparts/L/X/7/n/H/j/transparent-arrow-hi.png" alt="Title" />
-        </div> -->
       </div>
     </header>
 
-    <div class="container">
-      <div class="main">
-        <div class="col-left"></div>
-        <div class="form">
-          <div class="form-container">
-            <form id="signin" class="signin" action="" method='post'>
-              {{ form.csrf_token }}
-              {{ form.hidden_tag() }}
-              <label for="#name_field" class="sr-only">Enter your name</label>
-              {{ form.artistName(id="name_field", placeholder=" Enter your name", autocomplete="off") }}
-              <div id="error" class="error"></div>
-              <div class="btn-box">
-                {{ form.submit(class_="btn btn-warning") }}
-              </div>
-            </form>
-          </div>
+    <div class="main-content">
+      <main class="form-content">
+        <div class="form-container">
+          <form id="signin" class="signin" action="" method='post'>
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            <label for="#name_field" class="sr-only">Enter your name</label>
+            {{ form.artistName(id="name_field", placeholder=" Enter your name", autocomplete="off") }}
+            <div id="error" class="error"></div>
+            <div class="btn-box">
+              {{ form.submit(class_="btn btn-warning") }}
+            </div>
+          </form>
         </div>
-      </div>
-
-      <div class="sidebar">
+      </main>
+      <nav class="col-left"></nav>
+      <aside class="sidebar">
         <div class="info">
           <p>
             Lyrical is a pop lyric generator based on the <a href="https://github.com/jsvine/markovify">markovify</a>
             library. Enter your popstar name to see your next number one hit!
           </p>
         </div>
-      </div>
+      </aside>
     </div>
 
-    <footer class="footer">
+    <footer>
       <div class="credits">
         <p>
           By <a href="mailto:ggordonhall@gmail.com">Gabriel Gordon-Hall</a>
         </p>
       </div>
     </footer>
-
   </body>
 </html>

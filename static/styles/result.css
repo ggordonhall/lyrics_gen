@@ -3,22 +3,17 @@
 body {
     margin: 0px auto;
     font-family: 'Fira Sans', sans-serif;
-    /*background-image: url("http://www.solidbackgrounds.com/images/2560x1440/2560x1440-white-solid-color-background.jpg");
-    background-repeat: repeat-y;*/
   }
 
-/*
-img {
-    display: block;
-    margin: auto;
-    width: 10%;
-  }*/
+/* Header */
 
-#title_text {
-    font-size: 400%;
-    cursor: pointer;
-    color: black;
-}
+.header {
+    display: block;
+    margin-left: 35px;
+    padding: 0;
+    min-height: 10px;
+    text-align: center;
+  }
 
 .title-div {
     text-align: center;
@@ -26,38 +21,18 @@ img {
     border-bottom: 3px solid red;
   }
 
-.header {
-    display: block;
-    margin-left: 35px;
-    padding: 0;
-    min-height: 10px;
-    /*border: 1px solid red;*/
-    background-color: transparent;
-    text-align: center;
+#title_text {
+    font-size: 450%;
+    cursor: pointer;
+    color: inherit;
   }
 
-/*#title-image {
-    width: 80%;
-    margin: auto;
-}*/
-
-.footer {
-    display: -webkit-flex;
-    display: flex;
-
-    margin: 4px;
-    padding: 5px;
-    min-height: 10px;
-    /*border: 1px solid red;*/
-    background-color: transparent;
-  }
+/* Main */
 
 .container {
     width: 100%;
-    min-height: 520px;
     margin: 0px;
     padding: 0px;
-    background-color: transparent;
 
     display: -webkit-flex;
     display: flex;
@@ -70,8 +45,6 @@ img {
     display: flex;
     -webkit-flex-flow: row;
     flex-flow: row;
-
-    /*border: 1px solid red;*/
 
     -webkit-flex: 6 1 60%;
     flex: 6 1 60%;
@@ -89,7 +62,6 @@ img {
 .container > .main > .result-container {
     margin: 4px;
     padding: 5px;
-    /*border: 1px solid red;*/
 
     -webkit-flex: 6 1 70%;
     flex: 6 1 70%;
@@ -97,78 +69,103 @@ img {
     order: 2;
   }
 
-.container > .sidebar {
-    display: -webkit-flex;
-    display: flex;
+/* Lyrics */
 
-    /*border: 1px solid red;*/
-
-    -webkit-flex: 1 6 10%;
-    flex: 1 6 10%;
-    -webkit-order: 2;
-    order: 2;
+.lyrics-container {
+    display: none;
+    text-align: center;
+    margin-left: 20%;
   }
 
-.credits {
-    display: none;
-    position: fixed;
-    right: 35px;
-    bottom: 0px;
-    /*border: 1px solid red;*/
-    font-size: 17px;
+.song-name {
+    font-size: 300%;
+  }
+
+.artist-name {
     font-style: italic;
+    padding-bottom: 10px;
+  }
+
+/* Sidebar */
+
+.container > .sidebar {
+    -webkit-flex: 1 6 22%;
+    flex: 1 6 22%;
+    -webkit-order: 2;
+    order: 2;
+
+    text-align: left;
   }
 
 .share {
     display: none;
-    position: fixed;
-    /*border: 1px solid red;*/
-    height: 100px;
-    width: 200px;
-    bottom: 55px;
-    right: 13px;
+    width: 100%;
+    height: 100%;
+    position: relative;
   }
 
-.share-content {
-    text-align: left;
-}
-
 #share_text {
-    font-size: 22px;
+    position: absolute;
+    bottom: 10%;
+    font-size: 220%;
     font-weight: bold;
-}
+  }
 
 .fb-share-button {
+    position: absolute;
+    bottom: -90%;
     padding: 2px;
     border-bottom: 1px solid red;
 
-    transform: scale(1.8);
-    -ms-transform: scale(1.8);
-    -webkit-transform: scale(1.8);
-    -o-transform: scale(1.8);
-    -moz-transform: scale(1.8);
+    transform: scale(2);
+    -ms-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    -moz-transform: scale(2);
     transform-origin: top left;
     -ms-transform-origin: top left;
     -webkit-transform-origin: top left;
     -moz-transform-origin: top left;
     -webkit-transform-origin: top left;
-}
+  }
+
+/* Footer */
+
+.footer {
+    margin: 4px;
+    padding: 5px;
+    min-height: 5%;
+  }
+
+.credits {
+    display: none;
+    width: 100%;
+    text-align: right;
+    padding-right: 10%;
+    font-size: 120%;
+  }
 
 /* Too narrow to support all columns */
+
 @media all and (max-width: 640px) {
-    .container, #page {
+    .container {
       -webkit-flex-direction: column;
       flex-direction: column;
     }
 
     .container > .main, .container > .sidebar {
-      -webkit-order: 0;
-      order: 0;
+      -webkit-order: -1;
+      order: -1;
+      display: block;
+      padding-top: 5%;
     }
 
-    .container > header, footer {
-      min-height: 60px;
-      max-height: 60px;
+    .container > header {
+      display: block;
+    }
+
+    .container > footer {
+      display: block;
     }
 
     .container > .main {
@@ -180,24 +177,36 @@ img {
       -webkit-order: 0;
       order: 0;
     }
+
+    .lyrics-container {
+      margin-left: 0;
+    }
+
+    #share_text {
+      position: relative;
+      float: left;
+      margin-left: 2%;
+    }
+
+    .fb-share-button {
+      position: relative;
+      float: left;
+      margin-left: 10%;
+    }
+
+    .credits {
+      text-align: left;
+      font-size: 100%;
+      font-style: italic;
+    }
 }
 
-/* Lyrics */
-
-.lyrics-container {
-    display: none;
-    text-align: center;
-  }
-
-.song-name {
-    font-size: 300%;
-    /*padding-bottom: 2px;*/
-  }
-
-.artist-name {
-    font-style: italic;
-    padding-bottom: 10px;
-  }
+@media all and (max-width: 568px) {
+    footer {
+      -webkit-transform: translateY(100%);
+      -moz-transform: translateY(100%);
+      transform: translateY(100%);
+    }
 
 /* Load Screen */
 
