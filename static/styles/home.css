@@ -97,14 +97,18 @@ header {
 .form-content {
     width: 100%;
     height: 100%;
-    text-align: center;
-}
+    -webkit-display: flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
 
 .form-container {
+    display: block;
     width: 80%;
     height: 50%;
-    margin-top: 10%;
-    margin-left: 5%;
   }
 
 .btn-box {
@@ -159,6 +163,7 @@ header {
 
 .info {
     display: block;
+    padding: 3%;
     font-size: 150%;
     font-weight: bold;
   }
@@ -166,14 +171,13 @@ header {
 /* Footer */
 
 footer {
-    display: block;
-    min-height: 5%;
+    display: inline-block;
+    font-style: italic;
   }
 
 .credits {
-    width: 100%;
-    font-size: 100%;
-    font-style: italic;
+    margin-top: 2%;
+    margin-left: 3%;
   }
 
 /* Resize */
@@ -196,22 +200,27 @@ footer {
   .sidebar {
     -webkit-flex: 0 0 22em;
     flex: 0 0 22em;
+    position: relative;
   }
   .form-container {
     margin: auto;
     margin-top: 20%;
   }
   .info {
-    -webkit-transform: translateY(170%);
-    -moz-transform: translateY(170%);
-    transform: translateY(170%);
-
+    position: absolute;
+    width: 100%;
+    bottom: 6%;
+    text-align: left;
     font-size: 180%;
   }
+  footer {
+    margin-top: 5px;
+    margin-left: auto;
+  }
   .credits {
-    text-align: right;
-    padding-right: 10%;
-    font-size: 120%;
+    width: 22em;
+		text-align: left;
+		padding-bottom: 10px;
   }
   .error {
     width: 51%;

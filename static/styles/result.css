@@ -49,7 +49,7 @@ html, body {
 
 #title_text {
     color: inherit;
-    font-size: 450%;
+    font-size: 530%;
     cursor: pointer;
   }
 
@@ -154,7 +154,7 @@ footer {
 .fb-share-button {
 	  display: inline-block;
 		float: right;
-		margin-right: 10%;
+		margin-right: 20%;
 	  padding: 2px;
 	  border-bottom: 1px solid red;
 
@@ -191,7 +191,7 @@ footer {
 		flex: 0 0 12em;
   }
   .sidebar {
-		-webkit-flex: 0 0 12em;
+		-webkit-flex: 0 0 22em;
     flex: 0 0 22em;
     position: relative;
   }
