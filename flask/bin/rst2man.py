@@ -1,6 +1,6 @@
-#!/Users/GabrielGordon-Hall/Desktop/webcode/website/flask/bin/python3
+#!/Users/GabrielGordon-Hall/Documents/Code/Lyrical.im/Website/flask/bin/python3
 
-# Author: 
+# Author:
 # Contact: grubert@users.sf.net
 # Copyright: This module has been placed in the public domain.
 

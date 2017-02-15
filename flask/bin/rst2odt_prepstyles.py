@@ -1,4 +1,4 @@
-#!/Users/GabrielGordon-Hall/Desktop/webcode/website/flask/bin/python3
+#!/Users/GabrielGordon-Hall/Documents/Code/Lyrical.im/Website/flask/bin/python3
 
 # $Id: rst2odt_prepstyles.py 5839 2009-01-07 19:09:28Z dkuhlman $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>
@@ -25,27 +25,27 @@ NAMESPACES = {
 }
 
 def prepstyle(filename):
-    
+
     zin = zipfile.ZipFile(filename)
     styles = zin.read("styles.xml")
-    
+
     root = etree.fromstring(styles)
-    for el in root.xpath("//style:page-layout-properties", 
+    for el in root.xpath("//style:page-layout-properties",
         namespaces=NAMESPACES):
         for attr in el.attrib:
             if attr.startswith("{%s}" % NAMESPACES["fo"]):
                 del el.attrib[attr]
-    
+
     tempname = mkstemp()
     zout = zipfile.ZipFile(os.fdopen(tempname[0], "w"), "w",
         zipfile.ZIP_DEFLATED)
-    
+
     for item in zin.infolist():
         if item.filename == "styles.xml":
             zout.writestr(item, etree.tostring(root))
         else:
             zout.writestr(item, zin.read(item.filename))
-    
+
     zout.close()
     zin.close()
     shutil.move(tempname[1], filename)
