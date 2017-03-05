@@ -171,9 +171,9 @@ header {
 
 .info {
     display: block;
-    padding: 3%;
+    margin-left: 5%;
     text-align: left;
-    font-size: 4vw;
+    font-size: 4.5vw;
     font-weight: bold;
   }
 
@@ -183,7 +183,7 @@ footer {
     display: inline-block;
     font-style: italic;
     margin-top: 5%;
-    margin-left: 3%;
+    margin-left: 5%;
   }
 
 /* Resize */
@@ -216,19 +216,15 @@ footer {
     position: absolute;
     width: 100%;
     right: 2%;
-    bottom: 6%;
+    bottom: 0;
     text-align: left;
     font-size: 210%;
   }
   footer {
-    /*margin-top: 5px;
-    margin-left: auto;*/
+    margin-top: 2%;
     display: inline-block;
   }
   .credits {
-    /*width: 22em;
-		text-align: left;
-		padding-bottom: 10px;*/
     float: right;
     margin-right: 1%;
   }
@@ -241,17 +237,14 @@ footer {
     transition: background 0.5s ease, opacity 1s ease, margin-left .5s ease;
   }
   .error-change {
-    background: red;
+    background: #DC143C;
     margin-left: 0;
   }
 }
 
 @media (max-width: 568px) {
   .info {
-    margin: 2%;
-    font-size: 200%;
-  }
-  .credits {
-    margin-left: 2%;
+    margin: 3%;
+    font-size: 180%;
   }
 }

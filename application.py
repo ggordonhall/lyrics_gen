@@ -18,8 +18,6 @@ from flask import url_for
 from application import application
 from application.forms import UserName
 
-
-
 # ELASTIC BEANSTALK INITIALISATION
 # =====================================
 application = Flask(__name__)
