@@ -1,4 +1,4 @@
-#!/Users/GabrielGordon-Hall/Documents/Code/Lyrical.im/Website/flask/bin/python3
+#!/Users/gabrielgordon-hall/Documents/Code/lyrics_gen/flask/bin/python2.7
 
 # $Id: rst2html.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: David Goodger <goodger@python.org>

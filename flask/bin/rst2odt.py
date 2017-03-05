@@ -1,4 +1,4 @@
-#!/Users/GabrielGordon-Hall/Documents/Code/Lyrical.im/Website/flask/bin/python3
+#!/Users/gabrielgordon-hall/Documents/Code/lyrics_gen/flask/bin/python2.7
 
 # $Id: rst2odt.py 5839 2009-01-07 19:09:28Z dkuhlman $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>
@@ -27,3 +27,4 @@ writer = Writer()
 reader = Reader()
 output = publish_cmdline_to_binary(reader=reader, writer=writer,
     description=description)
+

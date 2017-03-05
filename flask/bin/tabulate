@@ -1,10 +1,11 @@
-#!/Users/GabrielGordon-Hall/Documents/Code/Lyrical.im/Website/flask/bin/python3
-# EASY-INSTALL-ENTRY-SCRIPT: 'tabulate==0.7.5','console_scripts','tabulate'
-__requires__ = 'tabulate==0.7.5'
+#!/Users/gabrielgordon-hall/Documents/Code/lyrics_gen/flask/bin/python2.7
+
+# -*- coding: utf-8 -*-
+import re
 import sys
-from pkg_resources import load_entry_point
+
+from tabulate import _main
 
 if __name__ == '__main__':
-    sys.exit(
-        load_entry_point('tabulate==0.7.5', 'console_scripts', 'tabulate')()
-    )
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(_main())

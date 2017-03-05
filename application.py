@@ -1,4 +1,6 @@
 #!flask/bin/python
+from signal import signal, SIGPIPE, SIG_DFL
+signal(SIGPIPE, SIG_DFL)
 
 import random
 import re
@@ -15,6 +17,8 @@ from flask import url_for
 
 from application import application
 from application.forms import UserName
+
+
 
 # ELASTIC BEANSTALK INITIALISATION
 # =====================================

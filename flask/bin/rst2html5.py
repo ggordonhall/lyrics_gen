@@ -1,4 +1,4 @@
-#!/Users/GabrielGordon-Hall/Documents/Code/Lyrical.im/Website/flask/bin/python3
+#!/Users/gabrielgordon-hall/Documents/Code/lyrics_gen/flask/bin/python2.7
 # -*- coding: utf8 -*-
 # :Copyright: © 2015 Günter Milde.
 # :License: Released under the terms of the `2-Clause BSD license`_, in short:

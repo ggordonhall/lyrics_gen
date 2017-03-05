@@ -1,4 +1,4 @@
-#!/Users/GabrielGordon-Hall/Documents/Code/Lyrical.im/Website/flask/bin/python3
+#!/Users/gabrielgordon-hall/Documents/Code/lyrics_gen/flask/bin/python2.7
 
 import argparse
 import code

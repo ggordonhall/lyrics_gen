@@ -107,8 +107,16 @@ header {
 
 .form-container {
     display: block;
-    width: 80%;
+    width: 85%;
     height: 50%;
+  }
+
+.clearfix:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
   }
 
 .btn-box {
@@ -164,7 +172,8 @@ header {
 .info {
     display: block;
     padding: 3%;
-    font-size: 150%;
+    text-align: left;
+    font-size: 4vw;
     font-weight: bold;
   }
 
@@ -173,10 +182,7 @@ header {
 footer {
     display: inline-block;
     font-style: italic;
-  }
-
-.credits {
-    margin-top: 2%;
+    margin-top: 5%;
     margin-left: 3%;
   }
 
@@ -198,8 +204,8 @@ footer {
     flex: 0 0 12em;
   }
   .sidebar {
-    -webkit-flex: 0 0 22em;
-    flex: 0 0 22em;
+    -webkit-flex: 0 0 24em;
+    flex: 0 0 24em;
     position: relative;
   }
   .form-container {
@@ -209,18 +215,22 @@ footer {
   .info {
     position: absolute;
     width: 100%;
+    right: 2%;
     bottom: 6%;
     text-align: left;
-    font-size: 180%;
+    font-size: 210%;
   }
   footer {
-    margin-top: 5px;
-    margin-left: auto;
+    /*margin-top: 5px;
+    margin-left: auto;*/
+    display: inline-block;
   }
   .credits {
-    width: 22em;
+    /*width: 22em;
 		text-align: left;
-		padding-bottom: 10px;
+		padding-bottom: 10px;*/
+    float: right;
+    margin-right: 1%;
   }
   .error {
     width: 51%;
@@ -233,5 +243,15 @@ footer {
   .error-change {
     background: red;
     margin-left: 0;
+  }
+}
+
+@media (max-width: 568px) {
+  .info {
+    margin: 2%;
+    font-size: 200%;
+  }
+  .credits {
+    margin-left: 2%;
   }
 }

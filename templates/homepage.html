@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
   <head>
     <!-- Meta Tags -->
     <meta charset="utf-8" />
@@ -10,11 +10,23 @@
     <link rel="shortcut icon" href="{{ url_for('static',filename='favicon-quaver.png') }}" type="image/x-icon" />
 
     <!-- Facebook Share Tags -->
-    <meta property="og:url"           content="http://lyrical.im/" />
-    <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Lyrical" />
-    <meta property="og:description"   content="The Pop Lyric Generator" />
-    <meta property="og:image"         content="{{ url_for('static',filename='favicon-quaver.png') }}" />
+    <meta property="og:description"   content="The Pop Lyric Generator. Enter your name and see your next number one hit!" />
+    <meta property="og:url"           content="http://lyrical.im/" />
+    <meta property="og:image"         content="http://lyrical.im/static/favicon-quaver.png" />
+    <meta property="og:type"          content="website" />
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-92343095-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -48,7 +60,7 @@
 
     <div class="main-content">
       <main class="form-content">
-        <div class="form-container">
+        <div class="form-container clearfix">
           <form id="signin" class="signin" action="" method='post'>
             {{ form.csrf_token }}
             {{ form.hidden_tag() }}
@@ -65,8 +77,9 @@
       <aside class="sidebar">
         <div class="info">
           <p>
-            Lyrical is a pop lyric generator based on the <a href="https://github.com/jsvine/markovify">markovify</a>
-            library. Enter your popstar name to see your next number one hit!
+            <span class="webname" style="color:red; font-size:130%">Lyrical</span> is a pop lyric generator. &#160 &#x1F3A4 &#x1F3A4 &#x1F3A4
+            </br> </br> Want to see your next number one hit? </br>
+            Enter your popstar name and find out!
           </p>
         </div>
       </aside>
