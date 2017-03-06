@@ -68,49 +68,61 @@ footer {
 /* Main Layout */
 
 .main {
-		display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     min-height: 100vh;
-		-webkit-flex-direction: column;
-		flex-direction: column;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
   }
 
 .main-content {
-		display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-		-webkit-flex: 1;
-		flex: 1;
+		-webkit-box-flex: 1;
+		    -ms-flex: 1;
+		        flex: 1;
   }
 
 .content {
-		-webkit-flex: 1;
-		flex: 1;
+		-webkit-box-flex: 1;
+		    -ms-flex: 1;
+		        flex: 1;
     text-align: center;
   }
 
 .col-left {
-		-webkit-flex: 0 6;
-		flex: 0 6;
+		-webkit-box-flex: 0;
+		    -ms-flex: 0 6;
+		        flex: 0 6;
   }
 
 .sidebar {
-		-webkit-flex: 0 0 10%;
-		flex: 0 0 10%;
+		-webkit-box-flex: 0;
+		    -ms-flex: 0 0 10%;
+		        flex: 0 0 10%;
     display: block;
 		padding: 5px;
   }
 
 .col-left {
-		-webkit-order: -1;
-		order: -1;
+		-webkit-box-ordinal-group: 0;
+		    -ms-flex-order: -1;
+		        order: -1;
   }
 
 .main,
 .main-content {
-		display: -webkit-flex;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		-webkit-flex-direction: column;
-		flex-direction: column;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
   }
 
 /* Lyric Content */
@@ -181,25 +193,31 @@ footer {
 
 @media (min-width: 768px) {
   .main-content {
-		-webkit-flex-direction: row;
-		flex-direction: row;
-		-webkit-flex: 1;
-		flex: 1;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: row;
+		        flex-direction: row;
+		-webkit-box-flex: 1;
+		    -ms-flex: 1;
+		        flex: 1;
   }
   .lyrics-container {
-		-webkit-flex: 1;
-		flex: 1;
+		-webkit-box-flex: 1;
+		    -ms-flex: 1;
+		        flex: 1;
   }
 	.lyrics-container {
 		margin-left: 23%;
 	}
   .col-left {
-		-webkit-flex: 0 0 12em;
-		flex: 0 0 12em;
+		-webkit-box-flex: 0;
+		    -ms-flex: 0 0 12em;
+		        flex: 0 0 12em;
   }
   .sidebar {
-		-webkit-flex: 0 0 24em;
-    flex: 0 0 24em;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 24em;
+          flex: 0 0 24em;
     position: relative;
   }
   .share-content {
@@ -234,18 +252,21 @@ footer {
 		-webkit-transform-origin: top left;
 	}
 	footer {
-		/*margin-top: 5px;
-		margin-left: auto;*/
 		display: inline-block;
 	}
 	.credits {
-		/*width: 22em;
-		text-align: left;
-		padding-bottom: 10px;*/
 		float: right;
 		margin-right: 1%;
 	}
 }
+
+@media (max-width: 568px) {
+	 .fb-share-button {
+		 float: left;
+		 margin-bottom: 10%;
+	 }
+}
+
 
 /* Load Screen */
 
@@ -254,8 +275,6 @@ footer {
     width: 100px;
     height: 100px;
     border: 3px solid #333;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
     border-radius: 50%;
     position: absolute;
     top: 0;
@@ -269,8 +288,6 @@ footer {
     width: 90px;
     height: 90px;
     border: 5px solid #fff;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
     border-radius: 50%;
     margin: auto;
     overflow: hidden;
@@ -282,15 +299,23 @@ footer {
     margin: auto;
     top: 360px;
     background-color: #333;
-    -webkit-border-radius: 0%;
-    -moz-border-radius: 0%;
     border-radius: 0%;
     border: none;
-    animation-name: anim, color;
-    animation-duration: 5s;
-    animation-timing-function:ease;
-    animation-iteration-count:infinite;
-    animation-direction: alternate;
+    -webkit-animation-name: anim, color;
+            animation-name: anim, color;
+    -webkit-animation-duration: 5s;
+            animation-duration: 5s;
+    -webkit-animation-timing-function:ease;
+            animation-timing-function:ease;
+    -webkit-animation-iteration-count:infinite;
+            animation-iteration-count:infinite;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+  }
+
+@-webkit-keyframes anim{
+
+    100% { top:0 }
   }
 
 @keyframes anim{

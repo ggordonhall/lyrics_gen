@@ -49,47 +49,60 @@ header {
 /* Main Layout */
 
 .main {
-    display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     min-height: 100vh;
-    -webkit-flex-direction: column;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
 .main-content {
-    display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    -webkit-flex: 1;
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: block;
   }
 
 .form-content {
-    -webkit-flex: 1;
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
   }
 
 .col-left {
-    -webkit-flex: 0 6;
-    flex: 0 6;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 6;
+            flex: 0 6;
   }
 
 .sidebar {
-    -webkit-flex: 0 0 10%;
-    flex: 0 0 10%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 10%;
+            flex: 0 0 10%;
     display: block;
   }
 
 .col-left {
-    -webkit-order: -1;
-    order: -1;
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1;
   }
 
 .main,
 .main-content {
-    display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
 /* Form Content */
@@ -98,11 +111,15 @@ header {
     width: 100%;
     height: 100%;
     -webkit-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 
 .form-container {
@@ -163,6 +180,8 @@ header {
 
 .error-change {
     background: #f0ad4e;
+    color: black;
+    font-weight: bold;
     margin-left: 0;
     opacity: 1;
   }
@@ -173,6 +192,7 @@ header {
     display: block;
     margin-left: 5%;
     text-align: left;
+    line-height: 1.5;
     font-size: 4.5vw;
     font-weight: bold;
   }
@@ -190,22 +210,28 @@ footer {
 
 @media (min-width: 768px) {
   .main-content {
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex: 1;
-    flex: 1;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
   }
   .form-content {
-    -webkit-flex: 1;
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
   }
   .col-left {
-    -webkit-flex: 0 0 12em;
-    flex: 0 0 12em;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 12em;
+            flex: 0 0 12em;
   }
   .sidebar {
-    -webkit-flex: 0 0 24em;
-    flex: 0 0 24em;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 24em;
+            flex: 0 0 24em;
     position: relative;
   }
   .form-container {
@@ -231,13 +257,15 @@ footer {
   .error {
     width: 51%;
     margin-left: 20%;
-    background: #f0ad4e;
+    background: red;
 
     -webkit-transition: background 0.5s ease, opacity 1s ease, margin-left .5s ease;
     transition: background 0.5s ease, opacity 1s ease, margin-left .5s ease;
   }
   .error-change {
-    background: #DC143C;
+    color: black;
+    font-weight: bold;
+    background: #f0ad4e;
     margin-left: 0;
   }
 }
@@ -246,6 +274,6 @@ footer {
   .info {
     margin: 3%;
     text-align: center;
-    font-size: 200%;
+    font-size: 180%;
   }
 }
