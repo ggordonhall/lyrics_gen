@@ -35,7 +35,6 @@ html, body {
 
 header {
     display: block;
-    min-height: 10%;
     margin: 4px;
     padding: 5px;
     text-align: center;
@@ -48,17 +47,6 @@ header {
 
 /* Main Layout */
 
-.main {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    min-height: 100vh;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-
 .main-content {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -67,6 +55,17 @@ header {
         -ms-flex: 1;
             flex: 1;
     display: block;
+  }
+
+.main,
+.main-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
 .form-content {
@@ -83,8 +82,8 @@ header {
 
 .sidebar {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 10%;
-            flex: 0 0 10%;
+        -ms-flex: 0 0 40%;
+            flex: 0 0 40%;
     display: block;
   }
 
@@ -94,16 +93,6 @@ header {
             order: -1;
   }
 
-.main,
-.main-content {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
 
 /* Form Content */
 
@@ -125,7 +114,7 @@ header {
 .form-container {
     display: block;
     width: 85%;
-    height: 50%;
+    height: 35%;
   }
 
 .clearfix:after {
@@ -190,10 +179,10 @@ header {
 
 .info {
     display: block;
-    margin-left: 5%;
+    margin: 5%;
     text-align: left;
     line-height: 1.5;
-    font-size: 4.5vw;
+    font-size: 4.5vh;
     font-weight: bold;
   }
 
@@ -202,7 +191,6 @@ header {
 footer {
     display: inline-block;
     font-style: italic;
-    margin-top: 5%;
     margin-left: 5%;
   }
 
@@ -270,10 +258,33 @@ footer {
   }
 }
 
-@media (max-width: 568px) {
+@media (max-width: 568px)
+    and (orientation : portrait) {
+  header {
+    margin-bottom: 10%;
+  }
   .info {
-    margin: 3%;
-    text-align: center;
-    font-size: 180%;
+    margin-top: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: left;
+    font-size: 3.7vh;
+  }
+}
+
+@media (max-width: 736px)
+    and (orientation : landscape) {
+  header {
+    margin-bottom: 12%;
+  }
+  footer {
+    display: none;
+  }
+  .info {
+    margin-top: 12%;
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: left;
+    font-size: 165%;
   }
 }

@@ -67,14 +67,24 @@ def clean_commas(song):
 # =====================================
 
 # Fetch source text from files
+# chorus_rhymes = str(open('files/chorus_dict.txt').read().strip())
+# verse_rhymes = str(open('files/lyrics_dict.txt').read().strip())
+
 chorus_text = str(open('files/lyrics_chorus.txt').read().strip())
 verse_text = str(open('files/lyrics_verse.txt').read().strip())
 chorus_rhymes = str(open('files/rhyme_dict_chorus.txt').read().strip())
 verse_rhymes = str(open('files/rhyme_dict_verse.txt').read().strip())
 
+# Fetch Markov model
+# model_json = open("files/model.txt").read()
+# chorus_model_json = open("files/model_chorus.txt").read()
+
+# lyrics_model = markovify.Text.from_json(model_json)
+# chorus_model = markovify.Text.from_json(chorus_model_json)
+
 # Model lyrics
 chorus_model = markovify.NewlineText(chorus_text, state_size=2)
-verse_model = markovify.NewlineText(verse_text, state_size=2)
+lyrics_model = markovify.NewlineText(verse_text, state_size=2)
 
 # Evaluate tokenized text as sets
 chorus_dict = ast.literal_eval(chorus_rhymes)
@@ -104,7 +114,7 @@ def match_rhyme(stem, model, bench, d):
 
 
     # If rhymes exist, test for rhymes by generating lines
-    for n in range(100):
+    for n in range(500):
         while True:
             rhyme_line = model.make_sentence()
 
@@ -144,7 +154,7 @@ def make_verse():
             # Try to find rhyming match based on the rhyming pattern
             try:
                 if a >= 0 and i == pattern[a]:
-                    match = match_rhyme(stems[a], verse_model, VERSE_BENCH, verse_dict)
+                    match = match_rhyme(stems[a], lyrics_model, VERSE_BENCH, verse_dict)
 
                     if match:
 
@@ -154,7 +164,7 @@ def make_verse():
                         break
 
                 elif b >= 0 and i == pattern[b]:
-                    match = match_rhyme(stems[b], verse_model, VERSE_BENCH, verse_dict)
+                    match = match_rhyme(stems[b], lyrics_model, VERSE_BENCH, verse_dict)
 
                     if match:
 
@@ -167,7 +177,7 @@ def make_verse():
                 pass
 
             # Otherwise add non-rhyming markovify line
-            line = verse_model.make_sentence()
+            line = lyrics_model.make_sentence()
             if line:
 
                 # Keep syllables within verse range
@@ -247,14 +257,14 @@ def make_prechorus():
 
             # Try to match line
             if _ == 1:
-                match = match_rhyme(stem, verse_model, VERSE_BENCH, verse_dict)
+                match = match_rhyme(stem, chorus_model, VERSE_BENCH, verse_dict)
 
                 # If match, add to bridge
                 if match:
                     prechorus.append(match)
                     break
 
-            line = verse_model.make_sentence()
+            line = chorus_model.make_sentence()
             if line:
 
                 # Keep syllables within bridge range
@@ -283,14 +293,14 @@ def make_bridge():
 
             # Try to match line
             if _ == 1:
-                match = match_rhyme(stem, chorus_model, BRIDGE_BENCH, chorus_dict)
+                match = match_rhyme(stem, lyrics_model, BRIDGE_BENCH, chorus_dict)
 
                 # If match, add to bridge
                 if match:
                     bridge.append(match)
                     break
 
-            line = chorus_model.make_sentence()
+            line = lyrics_model.make_sentence()
             if line:
 
                 # Keep syllables within bridge range
@@ -307,7 +317,7 @@ def make_bridge():
 
     # One short line
     while True:
-        line = chorus_model.make_short_sentence(40)
+        line = lyrics_model.make_short_sentence(40)
 
         if line:
             bridge.append(line + '...')

@@ -67,25 +67,16 @@ footer {
 
 /* Main Layout */
 
-.main {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    min-height: 100vh;
+.main,
+.main-content {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
-		    -ms-flex-direction: column;
-		        flex-direction: column;
-  }
-
-.main-content {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-		-webkit-box-flex: 1;
-		    -ms-flex: 1;
-		        flex: 1;
-  }
+			   -ms-flex-direction: column;
+			       flex-direction: column;
+	}
 
 .content {
 		-webkit-box-flex: 1;
@@ -112,17 +103,6 @@ footer {
 		-webkit-box-ordinal-group: 0;
 		    -ms-flex-order: -1;
 		        order: -1;
-  }
-
-.main,
-.main-content {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: column;
-		        flex-direction: column;
   }
 
 /* Lyric Content */
@@ -173,7 +153,7 @@ footer {
 .fb-share-button {
 	  display: inline-block;
 		float: right;
-		margin-right: 20%;
+		margin-right: 15%;
 	  padding: 2px;
 	  border-bottom: 1px solid red;
 
@@ -256,17 +236,24 @@ footer {
 	}
 	.credits {
 		float: right;
-		margin-right: 1%;
+		margin-left: 5%;
 	}
 }
 
-@media (max-width: 568px) {
+@media (max-width: 568px)
+	 and (orientation: portrait) {
 	 .fb-share-button {
 		 float: left;
 		 margin-bottom: 10%;
 	 }
 }
 
+@media (max-width: 568px)
+	 and (orientation: landscape) {
+	 .fb-share-button {
+		 margin-right: 15%;
+	 }
+}
 
 /* Load Screen */
 
