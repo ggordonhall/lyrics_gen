@@ -11,6 +11,9 @@ _mailinglist
 .tox
 .cache/
 .idea/
+.vscode/
+.gitignore
+__pycache__/
 
 # Coverage reports
 htmlcov
@@ -22,3 +25,4 @@ htmlcov
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+

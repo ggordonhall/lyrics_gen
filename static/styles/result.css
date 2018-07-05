@@ -56,9 +56,7 @@ html, body {
 /* Footer */
 
 footer {
-		font-style: italic;
-		margin-top: 5%;
-		margin-left: 3%;
+		margin-top: 3%;
   }
 
 .credits {
@@ -95,8 +93,9 @@ footer {
 		-webkit-box-flex: 0;
 		    -ms-flex: 0 0 10%;
 		        flex: 0 0 10%;
-    display: block;
+    display: none;
 		padding: 5px;
+		background-color: rgb(240,20,60);
   }
 
 .col-left {
@@ -145,7 +144,7 @@ footer {
 		display: inline-block;
 		float: left;
 		margin-left: 2%;
-		margin-top: 3%;
+		margin-top: 2%;
 		font-size: 200%;
 		font-weight: bold;
 	}
@@ -155,7 +154,7 @@ footer {
 		float: right;
 		margin-right: 15%;
 	  padding: 2px;
-	  border-bottom: 1px solid red;
+	  border-bottom: 1px solid white;
 
 		transform: scale(2);
 	  -ms-transform: scale(2);
@@ -199,6 +198,7 @@ footer {
       -ms-flex: 0 0 24em;
           flex: 0 0 24em;
     position: relative;
+		background-color: white;
   }
   .share-content {
     position: absolute;
@@ -219,6 +219,8 @@ footer {
 		display: block;
 		float: left;
 	  padding: 2px;
+		border-bottom: 1px solid red;
+
 
 		transform: scale(2.4);
 		-ms-transform: scale(2.4);

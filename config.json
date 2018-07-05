@@ -1,0 +1,94 @@
+{
+    "opts": {
+        "iter": 500,
+        "structs": [
+            "VPCVBCC",
+            "VCVVC",
+            "VVPCC",
+            "VCVBCC",
+            "VPCCVBC",
+            "VCVCC",
+            "VPCBC",
+            "VVPCVBCC",
+            "VCVC",
+            "VPCVVBC",
+            "VVVCBCEC",
+            "VCVCEC",
+            "EVVCBC",
+            "PCVECC"
+        ]
+    },
+    "V": {
+        "num_syllables": [
+            6,
+            7,
+            8
+        ],
+        "pattern": [
+            "AABBCC",
+            "ABABCC",
+            "AABBC",
+            "ABABCDCD",
+            "AAAA"
+        ],
+        "lyrics_path": "files/lyrics_verse.txt",
+        "dict_path": "files/rhyme_dict_verse.txt"
+    },
+    "C": {
+        "title": "[Chorus]",
+        "num_syllables": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pattern": [
+            "AA",
+            "ABAB",
+            "AABB",
+            "AAAA"
+        ],
+        "lyrics_path": "files/lyrics_chorus.txt",
+        "dict_path": "files/rhyme_dict_chorus.txt"
+    },
+    "P": {
+        "num_syllables": [
+            6,
+            7,
+            8
+        ],
+        "pattern": [
+            "AA"
+        ]
+    },
+    "B": {
+        "title": "[Bridge]",
+        "num_syllables": [
+            3,
+            4,
+            5,
+            6
+        ],
+        "pattern": [
+            "AA"
+        ]
+    },
+    "E": {
+        "num_syllables": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pattern": [
+            "AA",
+            "ABAB",
+            "AABB",
+            "AAAA"
+        ],
+        "lyrics_path": "files/lyrics_chorus.txt",
+        "dict_path": "files/rhyme_dict_chorus.txt"
+    }
+}

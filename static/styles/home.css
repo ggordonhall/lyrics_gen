@@ -85,6 +85,7 @@ header {
         -ms-flex: 0 0 40%;
             flex: 0 0 40%;
     display: block;
+    background-color: rgb(240,20,60);
   }
 
 .col-left {
@@ -186,6 +187,11 @@ header {
     font-weight: bold;
   }
 
+.webname {
+    color: white;
+    font-size: 130%;
+  }
+
 /* Footer */
 
 footer {
@@ -221,6 +227,7 @@ footer {
         -ms-flex: 0 0 24em;
             flex: 0 0 24em;
     position: relative;
+    background-color: white;
   }
   .form-container {
     margin: auto;
@@ -229,10 +236,13 @@ footer {
   .info {
     position: absolute;
     width: 100%;
-    right: 5%;
+    right: 2%;
     bottom: 0;
     text-align: left;
     font-size: 210%;
+  }
+  .webname {
+    color: red;
   }
   footer {
     margin-top: 2%;
@@ -263,8 +273,10 @@ footer {
   header {
     margin-bottom: 10%;
   }
+  .form-content {
+    margin-bottom: 15%;
+  }
   .info {
-    margin-top: 10%;
     margin-left: 5%;
     margin-right: 5%;
     text-align: left;
@@ -275,16 +287,29 @@ footer {
 @media (max-width: 736px)
     and (orientation : landscape) {
   header {
-    margin-bottom: 12%;
+    font-size: 75%;
   }
-  footer {
-    display: none;
+  .form-container {
+    height: 50%;
+  }
+  .btn-box {
+    height: 12vh;
+  }
+  #name_field {
+    height: 12vh;
+  }
+  .sidebar {
+    background-color: white;
   }
   .info {
-    margin-top: 12%;
     margin-left: 2%;
     margin-right: 2%;
     text-align: left;
-    font-size: 165%;
+  }
+  .webname {
+    color: red;
+  }
+  footer {
+    display: none;
   }
 }
