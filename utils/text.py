@@ -1,8 +1,10 @@
 from random import randint, choice
 from string import capwords
 
+from typing import List
 
-def clean(string):
+
+def clean(string: str) -> str:
     """
     Remove punctuation from string, unless
     last character is punctuation.
@@ -13,7 +15,7 @@ def clean(string):
     return string.lower()
 
 
-def cap_name(name):
+def cap_name(name: str) -> str:
     """
     Capitalise user-entered artist name.
     """
@@ -23,29 +25,29 @@ def cap_name(name):
     return username.strip()
 
 
-def clean_commas(song):
+def clean_commas(song_list: List[str]) -> List[str]:
     """
     Remove trailing commas from the end of a
     verse.
     """
     res = []
-    for idx in range(len(song)):
-        if song[idx][-1] == ',':
-            if idx + 1 >= len(song) or song[idx + 1] == '':
-                res.append(song[idx][:-1])
+    for idx in range(len(song_list)):
+        if song_list[idx][-1] == ',':
+            if idx + 1 >= len(song_list) or song_list[idx + 1] == '':
+                res.append(song_list[idx][:-1])
         else:
-            res.append(song[idx])
+            res.append(song_list[idx])
     return res
 
 
-def insert_username(song, username):
+def insert_username(song: str, username: str) -> str:
     """
     Insert username into the song where specified
     """
     return song.replace('XXXXX', username)
 
 
-def set_name(song):
+def set_name(song: str) -> str:
     """Choose random section of lyrics for title"""
     # Discard unwanted lines
     junk = ['', '[Chorus]', '[Bridge]']

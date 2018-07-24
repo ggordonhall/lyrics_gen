@@ -5,13 +5,15 @@ from typing import List, Dict, Optional
 
 
 class SongElement:
-    """
-    Song element object
+    """Generates a segment of the song (e.g. chorus/verse etc.)
+    The segment is constructed when the class is initialised, and
+    can be accessed via the `get_elem(self)` method.
     """
 
     # pylint: disable=too-many-instance-attributes
 
-    def __init__(self, opts, name: str, model, rhyme_dict, num_syllables: int, pattern: str):
+    def __init__(self, opts, name: str, model,
+                 rhyme_dict: Dict[str, str], num_syllables: int, pattern: str):
         self.opts = opts
         self.name = name
         self.model = model
@@ -56,10 +58,8 @@ class SongElement:
         a defined number of trials. If there is no valid line after
         the trials, returns None"""
         rhyme_stem = self.stems.get(stem_index)
-        if rhyme_stem:
-            rhyme_list = self._get_rhyming_words(rhyme_stem)
-        else:
-            raise IndexError("Stem does not exist!")
+        rhyme_list = self._get_rhyming_words(
+            rhyme_stem) if rhyme_stem else None
 
         for _ in range(self.opts["opts"]["iter"]):
             line = self.model.make_sentence()
@@ -76,10 +76,10 @@ class SongElement:
         return self.rhyme_dict.get(stem)
 
     def _is_duplicate(self, line: str) -> bool:
-        """Takes a generated song line. Returns true 90% of
+        """Takes a generated song line. Returns true 95% of
         the time the line is already in SongElem, otherwise
         returns false"""
-        return line in self.elem and random() > 0.05
+        return line in self.elem and random() > 0.95
 
     def _in_syllable_range(self, line: str) -> bool:
         """Takes a generated song line. Returns true if

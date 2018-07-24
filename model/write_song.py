@@ -1,15 +1,18 @@
 import markovify
 from random import choice
 
-from model.songelement import SongElement
+from model.song_element import SongElement
 from utils import clean_commas
 
 from typing import List, Dict, Optional
 
 
 class WriteSong:
-    """
-    Song object
+    """Generates a song. Uses the struture passed on construction,
+    and constructs the appropriate `SongElement` objects. Combines
+    the elements to form the complete lyrics of a song.
+
+    Song can be accessed by calling the `get_song` method.
     """
 
     def __init__(self, opts, structure: str, data):
@@ -24,9 +27,9 @@ class WriteSong:
         self.song: List[str] = []
         self._write_song()
 
-    def __repr__(self) -> str:
+    def get_song(self) -> str:
         """Return string representation of song"""
-        return "\n".join(clean_commas(self.song))
+        return '\n'.join(clean_commas(self.song))
 
     def _write_song(self):
         """Iterate through the song structure and build
@@ -43,7 +46,8 @@ class WriteSong:
                 )
             self.song.append("\n")
 
-    def _build_song_element(self, name: str, model, rhyme_dict) -> List[str]:
+    def _build_song_element(self, name: str, model: markovify.NewlineText,
+                            rhyme_dict: Dict[str, str]) -> List[str]:
         """Takes an element name, returns a song element"""
         num_syllables = choice(self.opts[name]["num_syllables"])
         pattern = choice(self.opts[name]["pattern"])

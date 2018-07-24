@@ -1,7 +1,4 @@
 #!flask/bin/python
-from signal import signal, SIGPIPE, SIG_DFL
-signal(SIGPIPE, SIG_DFL)
-
 import ast
 import json
 from random import choice
@@ -22,7 +19,7 @@ from application import UserName
 # =====================================
 application = Flask(__name__)
 application.debug = True
-application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
+application.secret_key = ''
 
 
 # CONFIGURATION
@@ -56,9 +53,10 @@ def login():
 def result():
     username = cap_name(request.args['name'])
     structure = choice(CONFIG["opts"]["structs"])
-    lyrics = WriteSong(CONFIG, structure, DATA)
-    lyrics = insert_username(lyrics, username)
-    song_name = set_name(lyrics)
+    lyrics_str = insert_username(
+        WriteSong(CONFIG, structure, DATA).get_song(), username)
+    song_name = set_name(lyrics_str)
+    lyrics = lyrics_str.split('\n')
     return render_template('resultpage.html', username=username, lyrics=lyrics, song_name=song_name)
 
 
