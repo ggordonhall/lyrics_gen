@@ -1,25 +1,20 @@
-#!flask/bin/python
+#!/Users/gabrielgordon-hall/.local/share/virtualenvs/lyrics_gen-ETPm8Ymq/bin/python3.7
 import ast
 import json
 from random import choice
 
+from quart import Quart, render_template, request, redirect, url_for
+from forms import UserName
+
 from model import WriteSong
 from utils import cap_name, set_name, insert_username
 
-from flask import Flask
-from flask import render_template
-from flask import request
-from flask import redirect
-from flask import url_for
-
-from application import application
-from application import UserName
 
 # ELASTIC BEANSTALK INITIALISATION
 # =====================================
-application = Flask(__name__)
+application = Quart(__name__)
 application.debug = True
-application.secret_key = ''
+application.secret_key = 'Super secret key'
 
 
 # CONFIGURATION
@@ -41,23 +36,24 @@ DATA = {
 
 
 @application.route('/', methods=['POST', 'GET'])
-def login():
+async def login():
     form = UserName()
     if form.validate_on_submit():
-        name = request.form['artistName']
+        r_form = await request.form
+        name = r_form['artistName']
         return redirect(url_for('result', name=name))
-    return render_template('homepage.html', form=form)
+    return await render_template('homepage.html', form=form)
 
 
 @application.route('/result')
-def result():
+async def result():
     username = cap_name(request.args['name'])
     structure = choice(CONFIG["opts"]["structs"])
     lyrics_str = insert_username(
         WriteSong(CONFIG, structure, DATA).get_song(), username)
     song_name = set_name(lyrics_str)
     lyrics = lyrics_str.split('\n')
-    return render_template('resultpage.html', username=username, lyrics=lyrics, song_name=song_name)
+    return await render_template('resultpage.html', username=username, lyrics=lyrics, song_name=song_name)
 
 
 if __name__ == '__main__':
