@@ -1,10 +1,9 @@
-import markovify
 from random import choice
+from typing import List, Dict
 
+import markovify
 from model.song_element import SongElement
 from utils import clean_commas
-
-from typing import List, Dict, Optional
 
 
 class WriteSong:

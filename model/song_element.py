@@ -1,7 +1,7 @@
 from random import random
-from utils import clean, sylco
-
 from typing import List, Dict, Optional
+
+from utils import clean, sylco
 
 
 class SongElement:
