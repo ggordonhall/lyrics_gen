@@ -4,6 +4,19 @@ from string import capwords
 from typing import List
 
 
+def data_window(path: str, window: int) -> str:
+    """
+    Open lyrics file and select a random
+    window of consecutive lines.
+    """
+    with open(path, "r") as f:
+        lines = f.readlines()
+        line_count = len(lines)
+        base = randint(0, line_count - (window + 1))
+        data_slice = lines[base: base + window]
+        return '\n'.join(data_slice)
+
+
 def clean(string: str) -> str:
     """
     Remove punctuation from string, unless
@@ -69,5 +82,4 @@ def set_name(song: str) -> str:
             song_name += (capwords(word[:-1]) + ' ')
         else:
             song_name += (capwords(word) + ' ')
-    song_name.strip()
-    return song_name
+    return song_name.strip()

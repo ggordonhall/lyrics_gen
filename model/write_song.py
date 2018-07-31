@@ -19,8 +19,7 @@ class WriteSong:
         self.verse_model = self._build_model(data["verse_text"])
         self.chorus_model = self._build_model(data["chorus_text"])
 
-        self.verse_dict = data["verse_dict"]
-        self.chorus_dict = data["chorus_dict"]
+        self.rhyme_dict = data["rhyme_dict"]
 
         self.structure = structure
         self.song: List[str] = []
@@ -34,14 +33,14 @@ class WriteSong:
         """Iterate through the song structure and build
         corresponding song elements"""
         chorus = self._build_song_element(
-            "C", self.chorus_model, self.chorus_dict)
+            "C", self.chorus_model, self.rhyme_dict)
         for name in self.structure:
             if name == "C":
                 self.song.extend(chorus)
             else:
                 self.song.extend(
                     self._build_song_element(
-                        name, self.verse_model, self.verse_dict)
+                        name, self.verse_model, self.rhyme_dict)
                 )
             self.song.append("\n")
 
@@ -57,4 +56,4 @@ class WriteSong:
     @staticmethod
     def _build_model(text: str):
         """Takes text and returns a Markovify model"""
-        return markovify.NewlineText(text, state_size=2)
+        return markovify.NewlineText(text, state_size=3)

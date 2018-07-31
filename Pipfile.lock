@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f3c80d167fd7dcd3102a2d50e7e575dd709dadd2ac247b3bbb00d1c92166ff31"
+            "sha256": "7b2d03840117cf87356b19a8770233e3fe0cc645f2c59bf6927b57c8e4787a05"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -49,6 +49,13 @@
                 "sha256:f15516df478d5a56180fbf80e68f206010e6d160fc39fa508b65e035fd75130b"
             ],
             "version": "==6.7"
+        },
+        "cmudict": {
+            "hashes": [
+                "sha256:3b34bc4616f3d3e61a2b07b7905fd2cf97ab57d91a765980723dd937577e6ab8",
+                "sha256:ea614aaf43e5d49f8f4aefd1f36cfff2f5dbbb1797293a8146db304ee324dc4f"
+            ],
+            "version": "==0.4.1"
         },
         "flask": {
             "hashes": [
@@ -106,7 +113,7 @@
                 "sha256:b9c40e9750f3d77e6e4d441d8b0266cf555e7cdabdcff33c4fd06366ca761ef8",
                 "sha256:ec9ef8f4a9bc6f71eec99e1806bfa2de401650d996c59330782b89a5555c1497"
             ],
-            "markers": "python_version >= '2.7' and python_version != '3.0.*' and python_version != '3.3.*' and python_version != '3.1.*' and python_version != '3.2.*'",
+            "markers": "python_version != '3.1.*' and python_version != '3.3.*' and python_version >= '2.7' and python_version != '3.2.*' and python_version != '3.0.*'",
             "version": "==4.3.4"
         },
         "itsdangerous": {
@@ -194,6 +201,13 @@
             ],
             "markers": "python_version >= '3.4.1'",
             "version": "==4.3.1"
+        },
+        "pronouncing": {
+            "hashes": [
+                "sha256:ff7856e1d973b3e16ff490c5cf1abdb52f08f45e2c35e463249b75741331e7c4"
+            ],
+            "index": "pypi",
+            "version": "==0.2.0"
         },
         "pycodestyle": {
             "hashes": [

@@ -9,6 +9,7 @@ pylint = "*"
 flask-wtf = "*"
 quart = "*"
 "autopep8" = "*"
+pronouncing = "*"
 
 [dev-packages]
 

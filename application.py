@@ -7,10 +7,10 @@ from quart import Quart, render_template, request, redirect, url_for
 from forms import UserName
 
 from model import WriteSong
-from utils import cap_name, set_name, insert_username
+from utils import data_window, cap_name, set_name, insert_username
 
 
-# ELASTIC BEANSTALK INITIALISATION
+# INITIALISATION
 # =====================================
 application = Quart(__name__)
 application.debug = True
@@ -22,13 +22,11 @@ application.secret_key = 'Super secret key'
 with open("config.json", "r") as f:
     CONFIG = json.load(f)
 
+WINDOW_SIZE = CONFIG["opts"]["window"]
 DATA = {
-    "verse_text": open(CONFIG["V"]["lyrics_path"]).read().strip(),
-    "chorus_text": open(CONFIG["C"]["lyrics_path"]).read().strip(),
-    "verse_dict": ast.literal_eval(open(CONFIG["V"]["dict_path"]).read().strip()),
-    "chorus_dict": ast.literal_eval(
-        open(CONFIG["C"]["dict_path"]).read().strip()
-    ),
+    "verse_text": data_window(CONFIG["V"]["lyrics_path"], WINDOW_SIZE),
+    "chorus_text": data_window(CONFIG["C"]["lyrics_path"], WINDOW_SIZE),
+    "rhyme_dict": ast.literal_eval(open(CONFIG["opts"]["dict_path"]).read().strip())
 }
 
 # ROUTES

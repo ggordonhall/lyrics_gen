@@ -1,6 +1,8 @@
 {
     "opts": {
-        "iter": 500,
+        "iter": 2000,
+        "window": 40000,
+        "dict_path": "files/rhyme_dict.txt",
         "structs": [
             "VPCVBCC",
             "VCVVC",
@@ -31,8 +33,7 @@
             "ABABCDCD",
             "AAAA"
         ],
-        "lyrics_path": "files/lyrics_verse.txt",
-        "dict_path": "files/rhyme_dict_verse.txt"
+        "lyrics_path": "files/verse.txt"
     },
     "C": {
         "title": "[Chorus]",
@@ -49,8 +50,7 @@
             "AABB",
             "AAAA"
         ],
-        "lyrics_path": "files/lyrics_chorus.txt",
-        "dict_path": "files/rhyme_dict_chorus.txt"
+        "lyrics_path": "files/chorus.txt"
     },
     "P": {
         "num_syllables": [
@@ -88,7 +88,6 @@
             "AABB",
             "AAAA"
         ],
-        "lyrics_path": "files/lyrics_chorus.txt",
-        "dict_path": "files/rhyme_dict_chorus.txt"
+        "lyrics_path": "files/chorus.txt"
     }
 }
