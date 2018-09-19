@@ -24,7 +24,7 @@ def clean(string: str) -> str:
     """
     punctuation = {',', '.', '"', '?', '!'}
     if string[-1] in punctuation:
-        return string[:-1].lower()
+        string = string[:-1]
     return string.lower()
 
 
@@ -32,10 +32,8 @@ def cap_name(name: str) -> str:
     """
     Capitalise user-entered artist name.
     """
-    username = ''
-    for i in name.split(' '):
-        username += capwords(i) + ' '
-    return username.strip()
+    username = [capwords(i) for i in name.split()]
+    return ' '.join(username)
 
 
 def clean_commas(song_list: List[str]) -> List[str]:
@@ -47,9 +45,8 @@ def clean_commas(song_list: List[str]) -> List[str]:
     for idx, line in enumerate(song_list):
         if line[-1] == ',':
             if idx + 1 >= len(song_list) or song_list[idx + 1] == '':
-                res.append(line[:-1])
-        else:
-            res.append(line)
+                line = line[:-1]
+        res.append(line)
     return res
 
 
@@ -74,12 +71,11 @@ def set_name(song: str) -> str:
     line = line[start:stop+1]
 
     # Add words within range to string and capitalise the first word
-    song_name = ''
+    song_name = []
     punc = set([',', '.', '"'])
     for idx, word in enumerate(line):
         # Check for trailing punctuation and remove unless ellipsis
         if idx == len(line)-1 and word[-1] in punc and word[-3:] != "...":
-            song_name += (capwords(word[:-1]) + ' ')
-        else:
-            song_name += (capwords(word) + ' ')
-    return song_name.strip()
+            word = word[:-1]
+        song_name.append(capwords(word))
+    return ' '.join(song_name)
