@@ -1,4 +1,3 @@
-#!/Users/gabrielgordon-hall/.local/share/virtualenvs/lyrics_gen-ETPm8Ymq/bin/python3.7
 import ast
 import json
 from random import choice
